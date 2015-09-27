@@ -754,7 +754,10 @@ Theorem mult_S_1 : forall n m : nat,
   m = S n -> 
   m * (1 + n) = m * m.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n m H.
+  rewrite -> H.
+  reflexivity.
+Qed.
 (** [] *)
 
 
