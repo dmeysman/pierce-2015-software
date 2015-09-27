@@ -945,7 +945,39 @@ Qed.
         then incrementing. 
 *)
 
-(* FILL IN HERE *)
+Inductive binary : Type :=
+  | zero : binary
+  | double : binary -> binary
+  | double_plus_one : binary -> binary.
+
+Fixpoint incr (b : binary) : binary :=
+  match b with
+    | zero => double_plus_one zero
+    | double b' => double_plus_one b'
+    | double_plus_one b' => double (incr b')
+  end.
+
+Fixpoint bin_to_nat (b : binary) : nat :=
+  match b with
+    | zero => 0
+    | double b' => 2 * bin_to_nat b'
+    | double_plus_one b' => 1 + 2 * bin_to_nat b'
+  end.
+
+Example test_bin_incr1 : bin_to_nat (incr zero) = 1 + bin_to_nat zero.
+Proof. reflexivity. Qed.
+
+Example test_bin_incr2 : bin_to_nat (incr (double_plus_one zero)) = 1 + bin_to_nat (double_plus_one zero).
+Proof. reflexivity. Qed.
+
+Example test_bin_incr3 : bin_to_nat (incr (double (double_plus_one zero))) = 1 + bin_to_nat (double (double_plus_one zero)).
+Proof. reflexivity. Qed.
+
+Example test_bin_incr4 : bin_to_nat (incr (double_plus_one (double_plus_one zero))) = 1 + bin_to_nat (double_plus_one (double_plus_one zero)).
+Proof. reflexivity. Qed.
+
+Example test_bin_incr5 : bin_to_nat (incr (double (double (double_plus_one zero)))) = 1 + bin_to_nat (double (double (double_plus_one zero))).
+Proof. reflexivity. Qed.
 (** [] *)
 
 (* ###################################################################### *)
