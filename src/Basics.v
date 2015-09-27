@@ -891,12 +891,22 @@ Qed.
     subsidiary lemma or two. Alternatively, remember that you do
     not have to introduce all hypotheses at the same time.) *)
 
-Theorem andb_eq_orb : 
+Theorem andb_eq_orb :
   forall (b c : bool),
   (andb b c = orb b c) ->
   b = c.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros b c.
+  destruct b as [false | true].
+  simpl.
+  intros H.
+  rewrite -> H.
+  reflexivity.
+  simpl.  
+  intros I.
+  rewrite -> I.
+  reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars (binary)  *)
