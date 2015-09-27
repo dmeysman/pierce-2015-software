@@ -107,7 +107,21 @@ Qed.
 Theorem andb_true_elim2 : forall b c : bool,
   andb b c = true -> c = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros b c H.
+  destruct b.
+  destruct c.
+  Case "b = true and c = true".
+  reflexivity.
+  Case "b = false and c = true".
+  rewrite <- H.
+  reflexivity.
+  destruct c.
+  Case "b = true and c = false".
+  reflexivity.
+  Case "b = false and c = false".
+  rewrite <- H.
+  reflexivity.
+Qed.
 (** [] *)
 
 (** There are no hard and fast rules for how proofs should be
