@@ -478,32 +478,58 @@ Qed.
 Theorem ble_nat_refl : forall n:nat,
   true = ble_nat n n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n.
+  induction n as [| n'].
+  reflexivity.
+  simpl.
+  rewrite -> IHn'.
+  reflexivity.
+Qed.
 
 Theorem zero_nbeq_S : forall n:nat,
   beq_nat 0 (S n) = false.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  reflexivity.
+Qed.
 
 Theorem andb_false_r : forall b : bool,
   andb b false = false.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros b.
+  destruct b.
+  reflexivity.
+  reflexivity.
+Qed.
 
 Theorem plus_ble_compat_l : forall n m p : nat, 
   ble_nat n m = true -> ble_nat (p + n) (p + m) = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n m p H.
+  induction  p as [| p'].
+  simpl.
+  rewrite -> H.
+  reflexivity.
+  simpl.
+  rewrite -> IHp'.
+  reflexivity.
+Qed.
 
 Theorem S_nbeq_0 : forall n:nat,
   beq_nat (S n) 0 = false.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  reflexivity.
+Qed.
 
 Theorem mult_1_l : forall n:nat, 1 * n = n.
 Proof.
-  (* FILL IN HERE *) Admitted.
-
+  intros n.
+  destruct  n as [| n'].
+  reflexivity.
+  simpl.
+  rewrite -> plus_0_r.
+  reflexivity.
+Qed.
+  
 Theorem all3_spec : forall b c : bool,
     orb
       (andb b c)
@@ -511,17 +537,39 @@ Theorem all3_spec : forall b c : bool,
                (negb c))
   = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
-
+  intros b c.
+  destruct b.
+  destruct c.
+  reflexivity.
+  reflexivity.
+  destruct c.
+  reflexivity.
+  reflexivity.
+Qed.
+  
 Theorem mult_plus_distr_r : forall n m p : nat,
   (n + m) * p = (n * p) + (m * p).
 Proof.
-  (* FILL IN HERE *) Admitted.
-
+  intros n m p.
+  induction n as [| n'].
+  reflexivity.
+  simpl.
+  rewrite -> IHn'.
+  rewrite -> plus_assoc.
+  reflexivity.
+Qed.
+  
 Theorem mult_assoc : forall n m p : nat,
   n * (m * p) = (n * m) * p.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n m p.
+  induction n as [| n'].
+  reflexivity.
+  simpl.
+  rewrite -> IHn'.
+  rewrite -> mult_plus_distr_r.
+  reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 2 stars, optional (beq_nat_refl)  *)
