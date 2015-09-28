@@ -891,19 +891,30 @@ Qed.
     yields [true] for every list [l]. *)
 
 Fixpoint beq_natlist (l1 l2 : natlist) : bool :=
-  (* FILL IN HERE *) admit.
+  match l1, l2 with
+    | nil, nil => true
+    | h :: t, h' :: t' => andb (beq_nat h h') (beq_natlist t t')
+    | _, _ => false
+  end.
 
 Example test_beq_natlist1 :   (beq_natlist nil nil = true).
- (* FILL IN HERE *) Admitted.
+  Proof. reflexivity. Qed.
 Example test_beq_natlist2 :   beq_natlist [1;2;3] [1;2;3] = true.
- (* FILL IN HERE *) Admitted.
+  Proof. reflexivity. Qed.
 Example test_beq_natlist3 :   beq_natlist [1;2;3] [1;2;4] = false.
- (* FILL IN HERE *) Admitted.
+  Proof. reflexivity. Qed.
 
 Theorem beq_natlist_refl : forall l:natlist,
   true = beq_natlist l l.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l.
+  induction l as [| h t].
+  reflexivity.
+  simpl.  
+  rewrite <- beq_nat_refl.
+  rewrite <- IHt.
+  reflexivity.
+Qed.
 (** [] *)
 
 (* ###################################################### *)
