@@ -926,7 +926,13 @@ Qed.
        involving [cons] ([::]), [snoc], and [app] ([++]).  
      - Prove it. *) 
 
-(* FILL IN HERE *)
+Theorem cons_snoc_app : forall l n m,
+  n :: (snoc l m) = [n] ++ l ++ [m].
+Proof.
+  intros l n m.
+  rewrite -> snoc_append.
+  reflexivity.  
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, advanced (bag_proofs)  *)
