@@ -1183,7 +1183,11 @@ Qed.
 Theorem dictionary_invariant2' : forall (d : dictionary) (m n o: nat),
   beq_nat m n = false -> find m d = find m (insert n o d).
 Proof.
- (* FILL IN HERE *) Admitted.
+  intros d m n o H.
+  simpl.
+  rewrite -> H.
+  reflexivity.
+Qed.
 (** [] *)
 
 
