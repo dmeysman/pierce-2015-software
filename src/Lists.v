@@ -942,7 +942,8 @@ Qed.
 Theorem count_member_nonzero : forall (s : bag),
   ble_nat 1 (count 1 (1 :: s)) = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  reflexivity.
+Qed.
 
 (** The following lemma about [ble_nat] might help you in the next proof. *)
 
@@ -958,7 +959,17 @@ Proof.
 Theorem remove_decreases_count: forall (s : bag),
   ble_nat (count 0 (remove_one 0 s)) (count 0 s) = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros s.
+  induction s as [| h t].
+  reflexivity.
+  simpl.
+  destruct h as [| h'].
+  rewrite -> ble_n_Sn.
+  reflexivity.
+  simpl.
+  rewrite -> IHt.
+  reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, optional (bag_count_sum)  *)  
