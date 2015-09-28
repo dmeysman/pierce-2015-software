@@ -1117,7 +1117,11 @@ Example test_hd_opt3 : hd_opt [5;6] = Some 5.
 Theorem option_elim_hd : forall (l:natlist) (default:nat),
   hd default l = option_elim default (hd_opt l).
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros l default.
+  destruct l as [| h t].
+  reflexivity.
+  reflexivity.
+Qed.
 (** [] *)
 
 (* ###################################################### *)
