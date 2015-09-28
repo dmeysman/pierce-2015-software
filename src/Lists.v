@@ -460,7 +460,22 @@ Example test_subset2:              subset [1;2;2] [2;1;4;1] = false.
     you haven't learned yet.  Feel free to ask for help if you get
     stuck! *)
 
-(* FILL IN HERE *)
+Theorem bag_theorem : forall b n,
+  count n b + 1 = count n (add n b).
+Proof.
+  intros b n.
+  simpl.
+  rewrite <- beq_nat_refl.
+  assert (H : forall m, m + 1 = S m).
+  intros m.
+  induction m as [| m'].
+  reflexivity.  
+  simpl.
+  rewrite -> IHm'.
+  reflexivity.
+  rewrite -> H.
+  reflexivity.
+Qed.
 (** [] *)
 
 (* ###################################################### *)
