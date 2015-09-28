@@ -976,7 +976,25 @@ Qed.
 (** Write down an interesting theorem [bag_count_sum] about bags 
     involving the functions [count] and [sum], and prove it.*)
 
-(* FILL IN HERE *)
+Lemma sum_S_move : forall n m,
+  S (m + n) = S m + n.
+Proof.
+  reflexivity.
+Qed.
+
+Theorem bag_count_sum : forall b c n,
+  count n (sum b c) = count n b + count n c.
+Proof.
+  intros b c n.
+  induction b as [| b'].
+  reflexivity.
+  simpl.
+  rewrite -> IHb.  
+  destruct (beq_nat n b').
+  rewrite -> sum_S_move.
+  reflexivity.
+  reflexivity.
+Qed.  
 (** [] *)
 
 (** **** Exercise: 4 stars, advanced (rev_injective)  *)
