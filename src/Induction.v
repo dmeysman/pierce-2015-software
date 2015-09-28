@@ -631,7 +631,20 @@ Qed.
     wanting to change your original definitions to make the property
     easier to prove, feel free to do so.) *)
 
-(* FILL IN HERE *)
+Theorem bin_to_nat_pres_incr : forall b,
+  bin_to_nat (incr b) = 1 + bin_to_nat b.
+Proof.
+  intros b.
+  induction b as [| b' | b''].
+  reflexivity.
+  reflexivity.
+  simpl.
+  rewrite -> plus_0_r.
+  rewrite -> plus_0_r.
+  rewrite -> IHb''.
+  rewrite -> plus_swap.
+  reflexivity.
+Qed.
 (** [] *)
 
 
