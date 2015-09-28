@@ -316,17 +316,21 @@ Example test_countoddmembers3:    countoddmembers nil = 0.
 
 
 Fixpoint alternate (l1 l2 : natlist) : natlist :=
-  (* FILL IN HERE *) admit.
-
+  match l1, l2 with
+    | nil, nil => nil
+    | l1', nil => l1'
+    | nil, l2' => l2'
+    | h :: t, h' :: t' => h :: h' :: alternate t t'
+  end.        
 
 Example test_alternate1:        alternate [1;2;3] [4;5;6] = [1;4;2;5;3;6].
- (* FILL IN HERE *) Admitted.
+  Proof. reflexivity. Qed.
 Example test_alternate2:        alternate [1] [4;5;6] = [1;4;5;6].
- (* FILL IN HERE *) Admitted.
+  Proof. reflexivity. Qed.
 Example test_alternate3:        alternate [1;2;3] [4] = [1;4;2;3].
- (* FILL IN HERE *) Admitted.
+  Proof. reflexivity. Qed.
 Example test_alternate4:        alternate [] [20;30] = [20;30].
- (* FILL IN HERE *) Admitted. 
+  Proof. reflexivity. Qed.
 (** [] *)
 
 (* ###################################################### *)
