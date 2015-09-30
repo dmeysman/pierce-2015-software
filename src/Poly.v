@@ -170,8 +170,12 @@ Inductive grumble (X:Type) : Type :=
       - [e mumble (b c 0)]
       - [e bool (b c 0)]
       - [c] 
-(* FILL IN HERE *)
-*)
+ *)
+
+Eval compute in d mumble (b a 5).
+Eval compute in d bool (b a 5).
+Eval compute in e bool true.
+Eval compute in e mumble (b c 0).
 (** [] *)
 
 
