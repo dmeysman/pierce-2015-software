@@ -187,8 +187,9 @@ Inductive baz : Type :=
    | y : baz -> bool -> baz.
 
 (** How _many_ elements does the type [baz] have? 
-(* FILL IN HERE *)
 *)
+
+Eval compute in 0.
 (** [] *)
 
 End MumbleBaz.
