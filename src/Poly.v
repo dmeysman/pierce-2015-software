@@ -516,12 +516,18 @@ Eval compute in (combine [1;2] [false;false;true;true]).
 Fixpoint split
            {X Y : Type} (l : list (X*Y))
            : (list X) * (list Y) :=
-(* FILL IN HERE *) admit.
+  match l with
+    | nil => (nil, nil)
+    | (x, y) :: t => match (split t) with
+                       | (l1, l2) => (x :: l1, y :: l2)
+                     end
+  end.
 
 Example test_split:
   split [(1,false);(2,false)] = ([1;2],[false;false]).
 Proof.
-(* FILL IN HERE *) Admitted.
+  reflexivity.
+Qed.
 (** [] *)
 
 (* ###################################################### *)
