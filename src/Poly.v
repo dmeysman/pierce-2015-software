@@ -500,7 +500,10 @@ Fixpoint combine {X Y : Type} (lx : list X) (ly : list Y)
     - What does
         Eval compute in (combine [1;2] [false;false;true;true]).
       print?   []
-*)
+ *)
+
+Check @combine.
+Eval compute in (combine [1;2] [false;false;true;true]).
 
 (** **** Exercise: 2 stars (split)  *)
 (** The function [split] is the right inverse of combine: it takes a
