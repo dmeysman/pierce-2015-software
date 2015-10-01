@@ -120,9 +120,10 @@ Theorem rev_exercise1 : forall (l l' : list nat),
      l' = rev l.
 Proof.
   intros l l' H.
-  assert (I : rev (rev l') = l').
+  assert (I : l' = rev (rev l')).
+  symmetry.
   apply rev_involutive.
-  rewrite <- I.
+  rewrite I.
   rewrite H.
   reflexivity.
 Qed.
@@ -192,7 +193,11 @@ Example trans_eq_exercise : forall (n m o p : nat),
      (n + p) = m ->
      (n + p) = (minustwo o). 
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n m o p eq1 eq2.
+  apply trans_eq with m.
+  apply eq2.
+  apply eq1.
+Qed.
 (** [] *)
 
 
