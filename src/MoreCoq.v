@@ -795,7 +795,24 @@ Theorem length_snoc''' : forall (n : nat) (X : Type)
      length l = n ->
      length (snoc l v) = S n. 
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n X v l.
+  generalize dependent n.
+  induction l as [| h t].
+  intros n H.
+  simpl.
+  rewrite <- H.
+  reflexivity.
+  intros n H.
+  destruct n as [| n'].
+  simpl.
+  apply f_equal.
+  inversion H.
+  simpl.
+  apply f_equal.
+  apply IHt.
+  inversion H.
+  reflexivity.
+Qed.
 (** [] *)
 
 (** **** Exercise: 3 stars, optional (app_length_cons)  *)
