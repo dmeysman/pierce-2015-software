@@ -849,11 +849,39 @@ Qed.
 (** **** Exercise: 4 stars, optional (app_length_twice)  *)
 (** Prove this by induction on [l], without using app_length. *)
 
+Lemma length_cons_Slength : forall (X : Type) (l1 l2 : list X) (x : X),
+  length (l1 ++ x :: l2) = S (length (l1 ++ l2)).
+Proof.
+  intros X l1 l2 x.
+  induction l1 as [| h t].
+  reflexivity.
+  simpl.
+  apply f_equal.
+  apply IHt.
+Qed.
+
 Theorem app_length_twice : forall (X:Type) (n:nat) (l:list X),
      length l = n ->
      length (l ++ l) = n + n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros X n l.
+  generalize dependent n.
+  induction l as [| h t].
+  intros n H.
+  rewrite <- H.
+  reflexivity.
+  intros n H.
+  rewrite length_cons_Slength.
+  destruct n as [| n'].
+  inversion H.
+  inversion H.
+  rewrite H1.
+  apply IHt in H1.
+  simpl.
+  rewrite H1.
+  rewrite plus_n_Sm.
+  reflexivity.
+Qed.
 (** [] *)
 
 
