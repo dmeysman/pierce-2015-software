@@ -895,7 +895,21 @@ Theorem double_induction: forall (P : nat -> nat -> Prop),
   (forall m n, P m n -> P (S m) (S n)) ->
   forall m n, P m n.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros P H I J K m n.
+  generalize dependent m.
+  induction n as [| n'].
+  intros m.
+  induction m as [| m'].
+  apply H.
+  apply I.
+  apply IHm'.
+  intros m.
+  destruct m as [| m'].
+  apply J.
+  apply IHn'.
+  apply K.
+  apply IHn'.
+Qed.
 (** [] *)
 
 
